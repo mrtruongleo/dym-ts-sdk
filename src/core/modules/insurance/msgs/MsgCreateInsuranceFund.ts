@@ -1,0 +1,109 @@
+import { MsgBase } from "../../MsgBase";
+import snakecaseKeys from "snakecase-keys";
+import {
+  CosmosBaseV1Beta1Coin,
+  InjectiveInsuranceV1Beta1Tx,
+  InjectiveOracleV1Beta1Oracle,
+} from "@injectivelabs/core-proto-ts";
+
+export declare namespace MsgCreateInsuranceFund {
+  export interface Params {
+    fund: {
+      ticker: string;
+      quoteDenom: string;
+      oracleBase: string;
+      oracleQuote: string;
+      oracleType: InjectiveOracleV1Beta1Oracle.OracleType;
+      expiry?: number;
+    };
+    deposit: {
+      amount: string;
+      denom: string;
+    };
+    injectiveAddress: string;
+  }
+
+  export type Proto = InjectiveInsuranceV1Beta1Tx.MsgCreateInsuranceFund;
+}
+
+/**
+ * @category Messages
+ */
+export default class MsgCreateInsuranceFund extends MsgBase<
+  MsgCreateInsuranceFund.Params,
+  MsgCreateInsuranceFund.Proto
+> {
+  static fromJSON(
+    params: MsgCreateInsuranceFund.Params
+  ): MsgCreateInsuranceFund {
+    return new MsgCreateInsuranceFund(params);
+  }
+
+  public toProto() {
+    const { params } = this;
+
+    const amountCoin = CosmosBaseV1Beta1Coin.Coin.create();
+    amountCoin.amount = params.deposit.amount;
+    amountCoin.denom = params.deposit.denom;
+
+    const message = InjectiveInsuranceV1Beta1Tx.MsgCreateInsuranceFund.create();
+    message.ticker = params.fund.ticker;
+    message.quoteDenom = params.fund.quoteDenom;
+    message.oracleBase = params.fund.oracleBase;
+    message.oracleQuote = params.fund.oracleQuote;
+    message.oracleType = params.fund.oracleType;
+    message.sender = params.injectiveAddress;
+    message.initialDeposit = amountCoin;
+    message.expiry = (params.fund.expiry ? params.fund.expiry : -1).toString();
+
+    return InjectiveInsuranceV1Beta1Tx.MsgCreateInsuranceFund.fromPartial(
+      message
+    );
+  }
+
+  public toData() {
+    const proto = this.toProto();
+
+    return {
+      "@type": "/injective.insurance.v1beta1.MsgCreateInsuranceFund",
+      ...proto,
+    };
+  }
+
+  public toAmino() {
+    const proto = this.toProto();
+    const message = {
+      ...snakecaseKeys(proto as any),
+    };
+
+    return {
+      type: "insurance/MsgCreateInsuranceFund",
+      value: message,
+    };
+  }
+
+  public toWeb3() {
+    const amino = this.toAmino();
+    const { value } = amino;
+
+    return {
+      "@type": "/injective.insurance.v1beta1.MsgCreateInsuranceFund",
+      ...value,
+    };
+  }
+
+  public toDirectSign() {
+    const proto = this.toProto();
+
+    return {
+      type: "/injective.insurance.v1beta1.MsgCreateInsuranceFund",
+      message: proto,
+    };
+  }
+
+  public toBinary(): Uint8Array {
+    return InjectiveInsuranceV1Beta1Tx.MsgCreateInsuranceFund.encode(
+      this.toProto()
+    ).finish();
+  }
+}
