@@ -4,8 +4,8 @@ import { ErrorType, GeneralException } from "@injectivelabs/exceptions";
 import {
   BECH32_ADDR_CONS_PREFIX,
   BECH32_ADDR_VAL_PREFIX,
-} from "../../utils/constants";
-import { AddressPrefix } from "../..";
+} from "dym/utils/constants";
+import { AddressPrefix } from "dym";
 
 /**
  * @category Utility Classes
@@ -27,7 +27,6 @@ export class Address {
 
   /**
    * Create an address instance from a bech32-encoded address and a prefix
-   * @param {string} bech32 bech32-encoded address
    * @param {string} prefix
    * @return {Address}
    * @throws {Error} if bech is not a valid bech32-encoded address

@@ -1,19 +1,19 @@
-import { Address } from './Address'
-import { AccountResponse, BaseAccountRestResponse } from '../../client/chain'
-import { AccountDetails } from '../../types/auth'
+import { Address } from "./Address";
+import { AccountResponse, BaseAccountRestResponse } from "dym/client/chain";
+import { AccountDetails } from "dym/types/auth";
 
 /**
  * @category Utility Classes
  */
 export class BaseAccount extends Address {
-  public accountNumber: number
+  public accountNumber: number;
 
-  public sequence: number
+  public sequence: number;
 
   public pubKey: {
-    type: string
-    key: string
-  }
+    type: string;
+    key: string;
+  };
 
   constructor({
     address,
@@ -21,22 +21,22 @@ export class BaseAccount extends Address {
     sequence,
     pubKey,
   }: {
-    address: string
-    accountNumber: number
-    sequence: number
+    address: string;
+    accountNumber: number;
+    sequence: number;
     pubKey: {
-      type: string
-      key: string
-    }
+      type: string;
+      key: string;
+    };
   }) {
-    super(address)
-    this.accountNumber = accountNumber
-    this.sequence = sequence
-    this.pubKey = pubKey
+    super(address);
+    this.accountNumber = accountNumber;
+    this.sequence = sequence;
+    this.pubKey = pubKey;
   }
 
   static fromRestApi(accountResponse: AccountResponse) {
-    const { base_account: baseAccount } = accountResponse.account
+    const { base_account: baseAccount } = accountResponse.account;
 
     return new BaseAccount({
       address: baseAccount.address,
@@ -46,14 +46,14 @@ export class BaseAccount extends Address {
       sequence: baseAccount.sequence ? parseInt(baseAccount.sequence, 10) : 0,
       pubKey: baseAccount.pub_key
         ? {
-            type: baseAccount.pub_key['@type'],
+            type: baseAccount.pub_key["@type"],
             key: baseAccount.pub_key.key,
           }
         : {
-            type: '',
-            key: '',
+            type: "",
+            key: "",
           },
-    })
+    });
   }
 
   static fromRestCosmosApi(accountResponse: BaseAccountRestResponse) {
@@ -67,20 +67,20 @@ export class BaseAccount extends Address {
         : 0,
       pubKey: accountResponse.pub_key
         ? {
-            type: accountResponse.pub_key['@type'],
+            type: accountResponse.pub_key["@type"],
             key: accountResponse.pub_key.key,
           }
         : {
-            type: '',
-            key: '',
+            type: "",
+            key: "",
           },
-    })
+    });
   }
 
   public incrementSequence() {
-    this.sequence += 1
+    this.sequence += 1;
 
-    return this
+    return this;
   }
 
   public toAccountDetails(): AccountDetails {
@@ -89,6 +89,6 @@ export class BaseAccount extends Address {
       sequence: this.sequence,
       address: this.bech32Address,
       accountNumber: this.accountNumber,
-    }
+    };
   }
 }
