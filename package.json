@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@injectivelabs/sdk-ts": "^1.14.5",
-    "dym-ts-sdk": "github:mrtruongleo/dym-ts-sdk"
+    "dym-ts-sdk": "https://github.com/mrtruongleo/dym-ts-sdk.git"
   },
   "devDependencies": {
     "link-module-alias": "^1.2.0",
