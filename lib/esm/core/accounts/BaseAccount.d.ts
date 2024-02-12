@@ -1,6 +1,6 @@
 import { Address } from "./Address";
-import { AccountResponse, BaseAccountRestResponse } from "dym/client/chain";
-import { AccountDetails } from "dym/types/auth";
+import { AccountResponse, BaseAccountRestResponse } from "../../client";
+import { AccountDetails } from "../../types/auth";
 /**
  * @category Utility Classes
  */

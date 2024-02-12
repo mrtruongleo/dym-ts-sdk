@@ -1,6 +1,6 @@
-import { Address } from './Address';
-import { AccountResponse, BaseAccountRestResponse } from '../../client/chain';
-import { AccountDetails } from '../../types/auth';
+import { Address } from "./Address";
+import { AccountResponse, BaseAccountRestResponse } from "../../client";
+import { AccountDetails } from "../../types/auth";
 /**
  * @category Utility Classes
  */

@@ -12,10 +12,10 @@
     "forceConsistentCasingInFileNames": true, /* Disallow inconsistently */
     "moduleResolution": "Node",
     "allowJs": true,
-    "baseUrl": ".src",
-    "paths": {
-      "dym/*": ["./src/*"]
-    }
+    "baseUrl": "./src"
+    // "paths": {
+    //   "dym/*": ["./src/*"]
+    // }
   },
   "ts-node": {
     "transpileOnly": true,

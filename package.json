@@ -5,18 +5,16 @@
   "contributors": [
     "mrtruongleo"
   ],
-  "main": "lib/cjs/index.js",
+  "main": "lib/esm/index.js",
   "module": "lib/esm/index.js",
+  "type": "module",
   "files": [
     "lib",
     "*.md"
   ],
-  "_moduleAliases": {
-    "dym": "./lib/esm"
-  },
   "scripts": {
     "postinstall": "link-module-alias",
-    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && link-module-alias",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "clean": "npx tsc --build --clean",
     "test": "ts-node --esm test.ts"
   },

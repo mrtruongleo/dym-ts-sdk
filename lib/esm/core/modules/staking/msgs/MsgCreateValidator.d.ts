@@ -52,13 +52,13 @@ export default class MsgCreateValidator extends MsgBase<MsgCreateValidator.Param
         value: MsgCreateValidator.Object;
     };
     toWeb3(): {
-        value: CosmosBaseV1Beta1Coin.Coin;
-        description: CosmosStakingV1Beta1Staking.Description;
-        commission: CosmosStakingV1Beta1Staking.CommissionRates;
-        minSelfDelegation: string;
         delegatorAddress: string;
         validatorAddress: string;
         pubkey: import("@injectivelabs/core-proto-ts/cjs/google/protobuf/any").Any;
+        description: CosmosStakingV1Beta1Staking.Description;
+        commission: CosmosStakingV1Beta1Staking.CommissionRates;
+        minSelfDelegation: string;
+        value: CosmosBaseV1Beta1Coin.Coin;
         pubKey: any;
         "@type": string;
     };
