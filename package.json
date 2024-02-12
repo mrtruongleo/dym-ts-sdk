@@ -12,7 +12,7 @@
     "*.md"
   ],
   "_moduleAliases": {
-    "dym": "./src/"
+    "dym": "./lib/esm"
   },
   "scripts": {
     "postinstall": "link-module-alias",
