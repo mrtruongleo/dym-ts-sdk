@@ -21,7 +21,6 @@ import { DEFAULT_BLOCK_TIMEOUT_HEIGHT } from "@injectivelabs/utils";
 import { ChainRestAuthApi, ChainRestTendermintApi } from "../../../client";
 import { CosmosTxV1Beta1Tx } from "@injectivelabs/core-proto-ts";
 import { BaseAccount } from "../../accounts";
-import { AddressPrefix } from "index";
 import { getStdFeeFromString } from "./utils/fee";
 
 /**

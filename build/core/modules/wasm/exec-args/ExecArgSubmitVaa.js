@@ -1,0 +1,19 @@
+import { dataToExecData, ExecArgBase, } from '../ExecArgBase';
+import { binaryToBase64 } from './../../../../utils/utf8';
+/**
+ * @category Contract Exec Arguments
+ */
+export default class ExecArgSubmitVaa extends ExecArgBase {
+    static fromJSON(params) {
+        return new ExecArgSubmitVaa(params);
+    }
+    toData() {
+        const { params } = this;
+        return {
+            data: binaryToBase64(params.signed),
+        };
+    }
+    toExecData() {
+        return dataToExecData('submit_vaa', this.toData());
+    }
+}
