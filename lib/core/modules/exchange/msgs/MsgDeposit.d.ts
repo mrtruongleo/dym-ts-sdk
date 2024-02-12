@@ -1,0 +1,36 @@
+import { CosmosBaseV1Beta1Coin, InjectiveExchangeV1Beta1Tx } from "@injectivelabs/core-proto-ts";
+import { MsgBase } from "../../MsgBase";
+export declare namespace MsgDeposit {
+    interface Params {
+        subaccountId: string;
+        injectiveAddress: string;
+        amount: {
+            amount: string;
+            denom: string;
+        };
+    }
+    type Proto = InjectiveExchangeV1Beta1Tx.MsgDeposit;
+}
+/**
+ * @category Messages
+ */
+export default class MsgDeposit extends MsgBase<MsgDeposit.Params, MsgDeposit.Proto> {
+    static fromJSON(params: MsgDeposit.Params): MsgDeposit;
+    toProto(): InjectiveExchangeV1Beta1Tx.MsgDeposit;
+    toData(): {
+        sender: string;
+        subaccountId: string;
+        amount: CosmosBaseV1Beta1Coin.Coin | undefined;
+        "@type": string;
+    };
+    toAmino(): {
+        type: string;
+        value: any;
+    };
+    toWeb3(): any;
+    toDirectSign(): {
+        type: string;
+        message: InjectiveExchangeV1Beta1Tx.MsgDeposit;
+    };
+    toBinary(): Uint8Array;
+}

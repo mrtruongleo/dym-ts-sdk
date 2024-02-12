@@ -5,10 +5,18 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "lib",
     "moduleResolution": "node"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "lib"]
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "resolveJsonModule": true,
+      "moduleResolution": "node"
+    }
+  }
 }
