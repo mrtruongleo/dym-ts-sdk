@@ -5,20 +5,19 @@
   "contributors": [
     "mrtruongleo"
   ],
-  "main": "src/index.ts",
-  "type": "module",
+  "main": "./src/index.ts",
   "files": [
-    "build/",
+    "lib/",
+    "src/",
     "*.md"
   ],
   "scripts": {
     "build": "npx tsc --build --verbose",
-    "clean": "npx tsc --build --clean"
+    "clean": "npx tsc --build --clean",
+    "test": "ts-node test.ts"
   },
   "dependencies": {
-    "@ensdomains/eth-ens-namehash": "^2.0.15",
-    "@injectivelabs/sdk-ts": "^1.14.5",
-    "typescript": "^5.3.3"
+    "@injectivelabs/sdk-ts": "^1.14.5"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",

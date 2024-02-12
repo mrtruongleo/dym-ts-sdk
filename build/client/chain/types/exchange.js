@@ -1,4 +1,0 @@
-import { InjectiveExchangeV1Beta1Exchange, } from '@injectivelabs/core-proto-ts';
-export const GrpcOrderTypeMap = InjectiveExchangeV1Beta1Exchange.OrderType;
-export const OrderTypeMap = InjectiveExchangeV1Beta1Exchange.OrderType;
-export const GrpcMarketStatusMap = InjectiveExchangeV1Beta1Exchange.MarketStatus;

@@ -1,0 +1,31 @@
+import { ExecArgBase, ExecDataRepresentation } from '../ExecArgBase';
+import { ChainId } from '@injectivelabs/ts-types';
+export declare namespace ExecArgInitiateTransfer {
+    interface Params {
+        amount: string;
+        recipient: string;
+        recipientChainId: ChainId | number | string;
+        info: Record<string, any>;
+        relayerFee?: string;
+        payload?: Uint8Array | null;
+    }
+    interface Data {
+        nonce: number;
+        asset: {
+            amount: string;
+            info: Record<string, any>;
+        };
+        recipient_chain: ChainId | number | string;
+        recipient: string;
+        fee: string;
+        payload?: string;
+    }
+}
+/**
+ * @category Contract Exec Arguments
+ */
+export default class ExecArgInitiateTransfer extends ExecArgBase<ExecArgInitiateTransfer.Params, ExecArgInitiateTransfer.Data> {
+    static fromJSON(params: ExecArgInitiateTransfer.Params): ExecArgInitiateTransfer;
+    toData(): ExecArgInitiateTransfer.Data;
+    toExecData(): ExecDataRepresentation<ExecArgInitiateTransfer.Data>;
+}
