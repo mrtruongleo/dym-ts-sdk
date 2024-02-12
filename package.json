@@ -5,29 +5,22 @@
   "contributors": [
     "mrtruongleo"
   ],
-  "main": "lib/esm/index.js",
-  "module": "lib/esm/index.js",
-  "type": "module",
-  "files": [
-    "lib",
-    "*.md"
-  ],
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "postinstall": "link-module-alias",
-    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "clean": "npx tsc --build --clean",
-    "test": "ts-node --esm test.ts"
+    "build": "npm run clean && tsc --build --verbose",
+    "clean": "rm -rf lib && rm -rf node_modules/.cache && rm -rf build",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@injectivelabs/sdk-ts": "^1.14.5",
+    "@mrtruongleo/dym-ts-sdk": "^1.0.0",
     "dym-ts-sdk": "https://github.com/mrtruongleo/dym-ts-sdk.git"
   },
   "devDependencies": {
-    "link-module-alias": "^1.2.0",
-    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
-  "types": "./lib/esm/index.d.ts",
   "directories": {
     "lib": "lib"
   },
