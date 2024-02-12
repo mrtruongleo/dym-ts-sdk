@@ -1,6 +1,6 @@
 {
   "name": "@mrtruongleo/dym-ts-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Dymension sdk typescript",
   "contributors": [
     "mrtruongleo"
@@ -14,9 +14,8 @@
   ],
   "scripts": {
     "build": "npm run clean && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "clean": "rm -rf lib && rm -rf node_modules/.cache && rm -rf build",
-    "prepublishOnly": "npm run build",
-    "test": "ts-node --esm test.ts"
+    "clean": "rm -rf lib",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@injectivelabs/sdk-ts": "^1.14.5"

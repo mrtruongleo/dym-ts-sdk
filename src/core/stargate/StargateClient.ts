@@ -10,7 +10,6 @@ export class StargateClient extends CosmjsStargateClient {
   public async getAccount(searchAddress: string): Promise<Account | null> {
     try {
       const chainId = await this.getChainId();
-      console.log("chainid: ", chainId);
       const isInjective = startWithChainIdPrefix(chainId);
       const account = await this.forceGetQueryClient().auth.account(
         searchAddress

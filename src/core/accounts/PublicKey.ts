@@ -44,7 +44,6 @@ export class PublicKey {
   }
 
   public toPubKeyBytes(): Uint8Array {
-    console.log("pubkey type: ", this.type);
     return this.key;
   }
 
