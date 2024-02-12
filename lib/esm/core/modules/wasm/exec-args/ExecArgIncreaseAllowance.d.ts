@@ -1,0 +1,21 @@
+import { ExecArgBase, ExecDataRepresentation } from '../ExecArgBase';
+export declare namespace ExecArgIncreaseAllowance {
+    interface Params {
+        amount: string;
+        spender: string;
+        expires: Record<string, any>;
+    }
+    interface Data {
+        amount: string;
+        spender: string;
+        expires: Record<string, any>;
+    }
+}
+/**
+ * @category Contract Exec Arguments
+ */
+export default class ExecArgIncreaseAllowance extends ExecArgBase<ExecArgIncreaseAllowance.Params, ExecArgIncreaseAllowance.Data> {
+    static fromJSON(params: ExecArgIncreaseAllowance.Params): ExecArgIncreaseAllowance;
+    toData(): ExecArgIncreaseAllowance.Data;
+    toExecData(): ExecDataRepresentation<ExecArgIncreaseAllowance.Data>;
+}

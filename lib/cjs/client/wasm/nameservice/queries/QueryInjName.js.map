@@ -1,0 +1,1 @@
+{"version":3,"file":"QueryInjName.js","sourceRoot":"","sources":["../../../../../../src/client/wasm/nameservice/queries/QueryInjName.ts"],"names":[],"mappings":";;;AAAA,uDAAmD;AACnD,6CAA4C;AAQ5C,MAAa,YAAa,SAAQ,6BAAkC;IAClE,SAAS;QACP,OAAO,IAAA,gBAAQ,EAAC;YACd,IAAI,EAAE;gBACJ,OAAO,EAAE,IAAI,CAAC,MAAM,CAAC,OAAO;aAC7B;SACF,CAAC,CAAA;IACJ,CAAC;CACF;AARD,oCAQC"}

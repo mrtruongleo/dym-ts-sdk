@@ -1,0 +1,15 @@
+import { ExecArgBase, ExecDataRepresentation } from '../ExecArgBase';
+export declare namespace ExecArgDepositTokens {
+    interface Params {
+    }
+    interface Data {
+    }
+}
+/**
+ * @category Contract Exec Arguments
+ */
+export default class ExecArgDepositTokens extends ExecArgBase<ExecArgDepositTokens.Params, ExecArgDepositTokens.Data> {
+    static fromJSON(params: ExecArgDepositTokens.Params): ExecArgDepositTokens;
+    toData(): ExecArgDepositTokens.Data;
+    toExecData(): ExecDataRepresentation<ExecArgDepositTokens.Data>;
+}

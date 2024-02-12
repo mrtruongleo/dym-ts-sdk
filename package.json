@@ -1,22 +1,25 @@
 {
   "name": "@mrtruongleo/dym-ts-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Dymension sdk typescript",
   "contributors": [
     "mrtruongleo"
   ],
-  "main": "lib/index.js",
-  "module": "lib/index.esm.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/esm/index.js",
+  "module": "lib/cjs/index.js",
+  "types": "lib/esm/index.d.ts",
+  "files": [
+    "lib/",
+    "*.md"
+  ],
   "scripts": {
-    "build": "npm run clean && tsc --build --verbose",
+    "build": "npm run clean && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "clean": "rm -rf lib && rm -rf node_modules/.cache && rm -rf build",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "ts-node --esm test.ts"
   },
   "dependencies": {
-    "@injectivelabs/sdk-ts": "^1.14.5",
-    "@mrtruongleo/dym-ts-sdk": "^1.0.0",
-    "dym-ts-sdk": "https://github.com/mrtruongleo/dym-ts-sdk.git"
+    "@injectivelabs/sdk-ts": "^1.14.5"
   },
   "devDependencies": {
     "typescript": "^5.3.3"

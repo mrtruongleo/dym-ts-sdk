@@ -1,11 +1,8 @@
 import { bech32 } from "bech32";
 import { Address as EthereumUtilsAddress } from "ethereumjs-util";
 import { ErrorType, GeneralException } from "@injectivelabs/exceptions";
-import {
-  BECH32_ADDR_CONS_PREFIX,
-  BECH32_ADDR_VAL_PREFIX,
-} from "dym-ts-sdk/lib/esm/utils";
-import { AddressPrefix } from "dym-ts-sdk";
+import { BECH32_ADDR_CONS_PREFIX, BECH32_ADDR_VAL_PREFIX } from "../../utils";
+import { AddressPrefix } from "../../";
 
 /**
  * @category Utility Classes

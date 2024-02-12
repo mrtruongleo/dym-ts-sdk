@@ -1,0 +1,1 @@
+{"version":3,"file":"QueryResolverAddress.js","sourceRoot":"","sources":["../../../../../../src/client/wasm/nameservice/queries/QueryResolverAddress.ts"],"names":[],"mappings":";;;AAAA,uDAAmD;AACnD,6CAA4C;AAQ5C,MAAa,oBAAqB,SAAQ,6BAA0C;IAClF,SAAS;QACP,OAAO,IAAA,gBAAQ,EAAC;YACd,QAAQ,EAAE;gBACR,IAAI,EAAE,IAAI,CAAC,MAAM,CAAC,IAAI;aACvB;SACF,CAAC,CAAA;IACJ,CAAC;CACF;AARD,oDAQC"}

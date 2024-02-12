@@ -1,0 +1,1 @@
+{"version":3,"file":"QueryInjectiveAddress.js","sourceRoot":"","sources":["../../../../../../src/client/wasm/nameservice/queries/QueryInjectiveAddress.ts"],"names":[],"mappings":";;;AAAA,uDAAmD;AACnD,6CAA4C;AAQ5C,MAAa,qBAAsB,SAAQ,6BAA2C;IACpF,SAAS;QACP,OAAO,IAAA,gBAAQ,EAAC;YACd,OAAO,EAAE;gBACP,IAAI,EAAE,IAAI,CAAC,MAAM,CAAC,IAAI;aACvB;SACF,CAAC,CAAA;IACJ,CAAC;CACF;AARD,sDAQC"}
