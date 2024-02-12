@@ -5,13 +5,18 @@
   "contributors": [
     "mrtruongleo"
   ],
-  "main": "./lib/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
   "files": [
-    "lib/",
+    "lib",
     "*.md"
   ],
+  "_moduleAliases": {
+    "dym": "./src/"
+  },
   "scripts": {
-    "build": "npx tsc --build --verbose",
+    "postinstall": "link-module-alias",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && link-module-alias",
     "clean": "npx tsc --build --clean",
     "test": "ts-node test.ts"
   },
@@ -20,6 +25,7 @@
     "dym-ts-sdk": "github:mrtruongleo/dym-ts-sdk"
   },
   "devDependencies": {
+    "link-module-alias": "^1.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }

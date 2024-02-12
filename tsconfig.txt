@@ -12,8 +12,7 @@
     "esModuleInterop": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    
+    "skipLibCheck": true,    
     "outDir": "./build/esm"
   },
   "ts-node":{

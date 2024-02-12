@@ -1,20 +1,28 @@
 {
+  "transpileOnly":true,
   "compilerOptions": {
-    "lib": ["ESNext", "ES2015", "DOM"],
+    "lib": ["ESNext", "DOM"],
     "incremental": true,            /* Enable incremental compilation */
     "target": "ESNext",                /* Specify ECMAScript target version: */
-    "module": "CommonJS",           /* 'none', 'commonjs', 'amd', 'system', etc */
+    "module": "ES2020",           /* 'none', 'commonjs', 'amd', 'system', etc */
     "declaration": true,            /* Concatenate & emit output to single file.*/
-    "outDir": "lib",                /* Redirect output to the directory. */
+    "outDir": "lib/esm",                /* Redirect output to the directory. */
     "esModuleInterop": true,        /* Enables intero between CommonJS and ES */
     "skipLibCheck": true,           /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true, /* Disallow inconsistently */
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "paths": {
+      "dym": ["./src"]
+    }
   },
   "ts-node": {
     "transpileOnly": true
-  },
+  },  
   "include": [
-    "src"
+    "./src"
+  ],
+  "exclude": [
+    "./lib/**/*"
   ]
+
 }

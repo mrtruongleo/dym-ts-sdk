@@ -1,0 +1,20 @@
+import { ExecPrivilegedArgBase, ExecDataRepresentation } from '../ExecPrivilegedArgBase';
+export declare namespace ExecPrivilegedArgOffChainVaultRedeem {
+    interface Params {
+        origin: string;
+        args: Record<string, any>;
+    }
+    interface Data {
+        Redeem: {
+            args: Record<string, any>;
+        };
+    }
+}
+/**
+ * @category Contract Exec Arguments
+ */
+export default class ExecPrivilegedArgOffChainVaultRedeem extends ExecPrivilegedArgBase<ExecPrivilegedArgOffChainVaultRedeem.Params, ExecPrivilegedArgOffChainVaultRedeem.Data> {
+    static fromJSON(params: ExecPrivilegedArgOffChainVaultRedeem.Params): ExecPrivilegedArgOffChainVaultRedeem;
+    toData(): ExecPrivilegedArgOffChainVaultRedeem.Data;
+    toExecData(): ExecDataRepresentation<ExecPrivilegedArgOffChainVaultRedeem.Data>;
+}

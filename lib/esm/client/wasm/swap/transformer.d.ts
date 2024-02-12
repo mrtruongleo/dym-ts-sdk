@@ -1,0 +1,20 @@
+import { WasmContractQueryResponse } from '../types';
+export declare class SwapQueryTransformer {
+    static contractRouteResponseToContractRoute(response: WasmContractQueryResponse): {
+        steps: string[];
+        sourceDenom: string;
+        targetDenom: string;
+    };
+    static contractAllRoutesResponseToContractAllRoutes(response: WasmContractQueryResponse): {
+        steps: string[];
+        sourceDenom: string;
+        targetDenom: string;
+    }[];
+    static contractQuantityResponseToContractQuantity(response: WasmContractQueryResponse): {
+        expectedFees: {
+            amount: string;
+            denom: string;
+        }[];
+        resultQuantity: string;
+    };
+}

@@ -1,0 +1,24 @@
+import { ExecPrivilegedArgBase, ExecDataRepresentation } from '../ExecPrivilegedArgBase';
+export declare namespace ExecPrivilegedArgVaultRedeem {
+    interface Params {
+        origin: string;
+        vaultSubaccountId: string;
+        traderSubaccountId: string;
+        args: Record<string, any>;
+    }
+    interface Data {
+        vault_subaccount_id: string;
+        trader_subaccount_id: string;
+        msg: {
+            redeem: Record<string, any>;
+        };
+    }
+}
+/**
+ * @category Contract Exec Arguments
+ */
+export default class ExecPrivilegedArgVaultRedeem extends ExecPrivilegedArgBase<ExecPrivilegedArgVaultRedeem.Params, ExecPrivilegedArgVaultRedeem.Data> {
+    static fromJSON(params: ExecPrivilegedArgVaultRedeem.Params): ExecPrivilegedArgVaultRedeem;
+    toData(): ExecPrivilegedArgVaultRedeem.Data;
+    toExecData(): ExecDataRepresentation<ExecPrivilegedArgVaultRedeem.Data>;
+}

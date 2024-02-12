@@ -4,7 +4,7 @@ import {
   DEFAULT_GAS_LIMIT,
   DEFAULT_GAS_PRICE,
   AddressPrefix,
-} from "../../../../../src";
+} from "dym";
 import { BigNumberInBase, BigNumberInWei } from "@injectivelabs/utils";
 
 export const getStdFeeForToken = (
