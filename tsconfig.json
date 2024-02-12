@@ -4,19 +4,22 @@
     "lib": ["ESNext", "DOM"],
     "incremental": true,            /* Enable incremental compilation */
     "target": "ESNext",                /* Specify ECMAScript target version: */
-    "module": "ES2020",           /* 'none', 'commonjs', 'amd', 'system', etc */
+    "module": "ESNext",           /* 'none', 'commonjs', 'amd', 'system', etc */
     "declaration": true,            /* Concatenate & emit output to single file.*/
     "outDir": "lib/esm",                /* Redirect output to the directory. */
     "esModuleInterop": true,        /* Enables intero between CommonJS and ES */
     "skipLibCheck": true,           /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true, /* Disallow inconsistently */
     "moduleResolution": "Node",
+    "allowJs": true,
+    "baseUrl": ".src",
     "paths": {
-      "dym": ["./src"]
+      "dym/*": ["./src/*"]
     }
   },
   "ts-node": {
-    "transpileOnly": true
+    "transpileOnly": true,
+    "esm": true
   },  
   "include": [
     "./src"
@@ -24,5 +27,4 @@
   "exclude": [
     "./lib/**/*"
   ]
-
 }

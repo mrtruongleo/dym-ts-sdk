@@ -18,7 +18,7 @@
     "postinstall": "link-module-alias",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && link-module-alias",
     "clean": "npx tsc --build --clean",
-    "test": "ts-node test.ts"
+    "test": "ts-node --esm test.ts"
   },
   "dependencies": {
     "@injectivelabs/sdk-ts": "^1.14.5",
