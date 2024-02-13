@@ -23,20 +23,20 @@ export class DirectEthSecp256k1Wallet implements OfflineDirectSigner {
     return new DirectEthSecp256k1Wallet(privKey, publicKey, prefix);
   }
 
-  private readonly privateKey: PrivateKey;
+  private readonly privkey: Uint8Array;
 
-  private readonly publicKey: PublicKey;
+  private readonly pubkey: Uint8Array;
 
   private readonly prefix: string;
 
   private constructor(privKey: Uint8Array, pubKey: Uint8Array, prefix: string) {
-    this.privateKey = PrivateKey.fromHex(Buffer.from(privKey).toString("hex"));
-    this.publicKey = PublicKey.fromBytes(pubKey);
+    this.privkey = privKey;
+    this.pubkey = pubKey;
     this.prefix = prefix;
   }
 
   private get address(): string {
-    return this.publicKey.toAddress().toBech32(this.prefix);
+    return PublicKey.fromBytes(this.pubkey).toAddress().toBech32(this.prefix);
   }
 
   public async getAccounts(): Promise<readonly AccountData[]> {
@@ -44,7 +44,7 @@ export class DirectEthSecp256k1Wallet implements OfflineDirectSigner {
       {
         algo: "eth_secp256k1",
         address: this.address,
-        pubkey: this.publicKey.toPubKeyBytes(),
+        pubkey: this.pubkey,
       },
     ];
   }
@@ -60,15 +60,15 @@ export class DirectEthSecp256k1Wallet implements OfflineDirectSigner {
     if (address !== this.address) {
       throw new Error(`Address ${address} not found in wallet`);
     }
-
-    const signature = await this.privateKey.sign(Buffer.from(signBytes));
+    const prv = PrivateKey.fromHex(Buffer.from(this.privkey).toString("hex"));
+    const signature = await prv.sign(Buffer.from(signBytes));
 
     return {
       signed: signDoc,
       signature: {
         pub_key: {
           type: "tendermint/PubKeyEthSecp256k1",
-          value: this.publicKey.toBase64(),
+          value: PublicKey.fromBytes(this.pubkey).toBase64(),
         },
         signature: Buffer.from(signature).toString("base64"),
       },

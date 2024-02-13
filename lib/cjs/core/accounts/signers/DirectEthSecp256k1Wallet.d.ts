@@ -9,8 +9,8 @@ export declare class DirectEthSecp256k1Wallet implements OfflineDirectSigner {
      * @param prefix The bech32 address prefix (human readable part)
      */
     static fromKey(privKey: Uint8Array, prefix?: string): Promise<DirectEthSecp256k1Wallet>;
-    private readonly privateKey;
-    private readonly publicKey;
+    private readonly privkey;
+    private readonly pubkey;
     private readonly prefix;
     private constructor();
     private get address();

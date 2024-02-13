@@ -8,8 +8,8 @@ export declare class EthSecp256k1Wallet implements OfflineAminoSigner {
      * @param prefix The bech32 address prefix (human readable part)
      */
     static fromKey(privKey: Uint8Array, prefix?: string): Promise<EthSecp256k1Wallet>;
-    private readonly privateKey;
-    private readonly publicKey;
+    private readonly privkey;
+    private readonly pubkey;
     private readonly prefix;
     private constructor();
     private get address();

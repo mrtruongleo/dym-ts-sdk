@@ -22,20 +22,20 @@ export class EthSecp256k1Wallet implements OfflineAminoSigner {
     return new EthSecp256k1Wallet(privKey, publicKey, prefix);
   }
 
-  private readonly privateKey: PrivateKey;
+  private readonly privkey: Uint8Array;
 
-  private readonly publicKey: PublicKey;
+  private readonly pubkey: Uint8Array;
 
   private readonly prefix: string;
 
   private constructor(privKey: Uint8Array, pubKey: Uint8Array, prefix: string) {
-    this.privateKey = PrivateKey.fromHex(Buffer.from(privKey).toString("hex"));
-    this.publicKey = PublicKey.fromBytes(pubKey);
+    this.privkey = privKey;
+    this.pubkey = pubKey;
     this.prefix = prefix;
   }
 
   private get address(): string {
-    return this.publicKey.toAddress().toBech32(this.prefix);
+    return PublicKey.fromBytes(this.pubkey).toAddress().toBech32(this.prefix);
   }
 
   public async getAccounts(): Promise<readonly AccountData[]> {
@@ -43,7 +43,7 @@ export class EthSecp256k1Wallet implements OfflineAminoSigner {
       {
         algo: "eth_secp256k1",
         address: this.address,
-        pubkey: this.publicKey.toPubKeyBytes(),
+        pubkey: this.pubkey,
       },
     ];
   }
@@ -57,14 +57,16 @@ export class EthSecp256k1Wallet implements OfflineAminoSigner {
     }
 
     const messageBytes = serializeSignDoc(signDoc);
-    const signature = await this.privateKey.sign(Buffer.from(messageBytes));
+    const signature = await PrivateKey.fromHex(Buffer.from(this.privkey)).sign(
+      Buffer.from(messageBytes)
+    );
 
     return {
       signed: signDoc,
       signature: {
         pub_key: {
           type: "tendermint/PubKeyEthSecp256k1",
-          value: this.publicKey.toBase64(),
+          value: PublicKey.fromBytes(this.pubkey).toBase64(),
         },
         signature: Buffer.from(signature).toString("base64"),
       },
