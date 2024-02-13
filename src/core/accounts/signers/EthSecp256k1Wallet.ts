@@ -3,7 +3,7 @@ import { PrivateKey } from "../PrivateKey";
 import { PublicKey } from "../PublicKey";
 import { AccountData, OfflineAminoSigner } from "./types/amino-signer";
 import { AddressPrefix } from "../../..";
-
+import { Secp256k1Wallet } from "@cosmjs/launchpad";
 export class EthSecp256k1Wallet implements OfflineAminoSigner {
   /**
    * Creates a EthSecp256k1Wallet from the given private key
@@ -14,12 +14,16 @@ export class EthSecp256k1Wallet implements OfflineAminoSigner {
   public static async fromKey(
     privKey: Uint8Array,
     prefix = AddressPrefix
-  ): Promise<EthSecp256k1Wallet> {
+  ): Promise<Secp256k1Wallet> {
     const publicKey = PrivateKey.fromHex(Buffer.from(privKey).toString("hex"))
       .toPublicKey()
       .toPubKeyBytes();
 
-    return new EthSecp256k1Wallet(privKey, publicKey, prefix);
+    return new EthSecp256k1Wallet(
+      privKey,
+      publicKey,
+      prefix
+    ) as unknown as Secp256k1Wallet;
   }
 
   private readonly privkey: Uint8Array;

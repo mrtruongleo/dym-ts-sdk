@@ -24,9 +24,7 @@ export class DirectEthSecp256k1Wallet implements OfflineDirectSigner {
   }
 
   private readonly privkey: Uint8Array;
-
   private readonly pubkey: Uint8Array;
-
   private readonly prefix: string;
 
   private constructor(privKey: Uint8Array, pubKey: Uint8Array, prefix: string) {

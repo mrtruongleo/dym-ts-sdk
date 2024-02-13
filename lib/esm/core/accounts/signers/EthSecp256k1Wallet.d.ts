@@ -1,5 +1,6 @@
 import { AminoSignResponse, StdSignDoc } from "@cosmjs/amino";
 import { AccountData, OfflineAminoSigner } from "./types/amino-signer";
+import { Secp256k1Wallet } from "@cosmjs/launchpad";
 export declare class EthSecp256k1Wallet implements OfflineAminoSigner {
     /**
      * Creates a EthSecp256k1Wallet from the given private key
@@ -7,7 +8,7 @@ export declare class EthSecp256k1Wallet implements OfflineAminoSigner {
      * @param privKey The private key.
      * @param prefix The bech32 address prefix (human readable part)
      */
-    static fromKey(privKey: Uint8Array, prefix?: string): Promise<EthSecp256k1Wallet>;
+    static fromKey(privKey: Uint8Array, prefix?: string): Promise<Secp256k1Wallet>;
     private readonly privkey;
     private readonly pubkey;
     private readonly prefix;

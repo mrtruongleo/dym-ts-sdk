@@ -1,6 +1,6 @@
 {
   "name": "@mrtruongleo/dym-ts-sdk",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Dymension sdk typescript",
   "contributors": [
     "mrtruongleo"
@@ -18,6 +18,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "@cosmjs/launchpad": "^0.27.1",
     "@injectivelabs/sdk-ts": "^1.14.5",
     "bech32-2": "npm:bech32@^2.0.0"
   },
