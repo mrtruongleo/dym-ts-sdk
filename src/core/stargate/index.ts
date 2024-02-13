@@ -1,2 +1,2 @@
-export { StargateClient } from "./StargateClient";
-export { SigningStargateClient } from "./SigningStargateClient";
+export { EthStargateClient } from "./StargateClient";
+export { EthSigningStargateClient } from "./SigningStargateClient";

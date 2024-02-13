@@ -1,16 +1,13 @@
-import {
-  Account,
-  StargateClient as CosmjsStargateClient,
-  accountFromAny,
-} from "@cosmjs/stargate";
+import { Account, StargateClient, accountFromAny } from "@cosmjs/stargate";
 import { injectiveAccountParser } from "../accounts";
 import { startWithChainIdPrefix } from "../../utils/check";
 
-export class StargateClient extends CosmjsStargateClient {
+export class EthStargateClient extends StargateClient {
   public async getAccount(searchAddress: string): Promise<Account | null> {
     try {
       const chainId = await this.getChainId();
       const isInjective = startWithChainIdPrefix(chainId);
+
       const account = await this.forceGetQueryClient().auth.account(
         searchAddress
       );

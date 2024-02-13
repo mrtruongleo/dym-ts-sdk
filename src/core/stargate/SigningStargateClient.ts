@@ -51,7 +51,7 @@ import {
   defaultRegistryTypes,
   StargateClientOptions,
 } from "@cosmjs/stargate";
-import { StargateClient } from "./StargateClient";
+import { EthStargateClient } from "./StargateClient";
 import { getPublicKey } from "../modules";
 import { startWithChainIdPrefix } from "../../utils/check";
 import { injectiveAccountParser } from "../accounts";
@@ -88,7 +88,7 @@ export function createDefaultAminoConverters(): AminoConverters {
   };
 }
 
-export class SigningStargateClient extends StargateClient {
+export class EthSigningStargateClient extends EthStargateClient {
   public readonly registry: Registry;
   public readonly broadcastTimeoutMs: number | undefined;
   public readonly broadcastPollIntervalMs: number | undefined;
@@ -107,9 +107,9 @@ export class SigningStargateClient extends StargateClient {
     endpoint: string | HttpEndpoint,
     signer: OfflineSigner,
     options: SigningStargateClientOptions = {}
-  ): Promise<SigningStargateClient> {
+  ): Promise<EthSigningStargateClient> {
     const tmClient = await Tendermint37Client.connect(endpoint);
-    return SigningStargateClient.createWithSigner(tmClient, signer, options);
+    return EthSigningStargateClient.createWithSigner(tmClient, signer, options);
   }
 
   /**
@@ -120,8 +120,8 @@ export class SigningStargateClient extends StargateClient {
     tmClient: any,
     signer: OfflineSigner,
     options: SigningStargateClientOptions = {}
-  ): Promise<SigningStargateClient> {
-    return new SigningStargateClient(tmClient, signer, options);
+  ): Promise<EthSigningStargateClient> {
+    return new EthSigningStargateClient(tmClient, signer, options);
   }
 
   /**
@@ -136,8 +136,8 @@ export class SigningStargateClient extends StargateClient {
   public static async offline(
     signer: OfflineSigner,
     options: SigningStargateClientOptions = {}
-  ): Promise<SigningStargateClient> {
-    return new SigningStargateClient(undefined, signer, options);
+  ): Promise<EthSigningStargateClient> {
+    return new EthSigningStargateClient(undefined, signer, options);
   }
 
   protected constructor(

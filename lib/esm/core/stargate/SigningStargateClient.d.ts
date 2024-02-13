@@ -7,7 +7,7 @@ import { Height } from "cosmjs-types/ibc/core/client/v1/client";
 import { AminoConverters, AminoTypes } from "@cosmjs/stargate";
 import { GasPrice } from "@cosmjs/stargate";
 import { DeliverTxResponse, StargateClientOptions } from "@cosmjs/stargate";
-import { StargateClient } from "./StargateClient";
+import { EthStargateClient } from "./StargateClient";
 /**
  * Signing information for a single signer that is not included in the transaction.
  *
@@ -26,7 +26,7 @@ export interface SigningStargateClientOptions extends StargateClientOptions {
     readonly gasPrice?: GasPrice;
 }
 export declare function createDefaultAminoConverters(): AminoConverters;
-export declare class SigningStargateClient extends StargateClient {
+export declare class EthSigningStargateClient extends EthStargateClient {
     readonly registry: Registry;
     readonly broadcastTimeoutMs: number | undefined;
     readonly broadcastPollIntervalMs: number | undefined;
@@ -39,12 +39,12 @@ export declare class SigningStargateClient extends StargateClient {
      * For now this uses the Tendermint 0.34 client. If you need Tendermint 0.37
      * support, see `createWithSigner`.
      */
-    static connectWithSigner(endpoint: string | HttpEndpoint, signer: OfflineSigner, options?: SigningStargateClientOptions): Promise<SigningStargateClient>;
+    static connectWithSigner(endpoint: string | HttpEndpoint, signer: OfflineSigner, options?: SigningStargateClientOptions): Promise<EthSigningStargateClient>;
     /**
      * Creates an instance from a manually created Tendermint client.
      * Use this to use `Tendermint37Client` instead of `Tendermint37Client`.
      */
-    static createWithSigner(tmClient: any, signer: OfflineSigner, options?: SigningStargateClientOptions): Promise<SigningStargateClient>;
+    static createWithSigner(tmClient: any, signer: OfflineSigner, options?: SigningStargateClientOptions): Promise<EthSigningStargateClient>;
     /**
      * Creates a client in offline mode.
      *
@@ -54,7 +54,7 @@ export declare class SigningStargateClient extends StargateClient {
      * When you try to use online functionality with such a signer, an
      * exception will be raised.
      */
-    static offline(signer: OfflineSigner, options?: SigningStargateClientOptions): Promise<SigningStargateClient>;
+    static offline(signer: OfflineSigner, options?: SigningStargateClientOptions): Promise<EthSigningStargateClient>;
     protected constructor(tmClient: any | undefined, signer: OfflineSigner, options: SigningStargateClientOptions);
     simulate(signerAddress: string, messages: readonly EncodeObject[], memo: string | undefined): Promise<number>;
     sendTokens(senderAddress: string, recipientAddress: string, amount: readonly Coin[], fee: StdFee | "auto" | number, memo?: string): Promise<DeliverTxResponse>;

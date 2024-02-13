@@ -45,7 +45,7 @@ import { OfflineDirectSigner } from "@cosmjs/proto-signing";
 
   const [signer] = await wallet.getAccounts();
   const client =
-    await EthermintStargateClient.SigningStargateClient.connectWithSigner(
+    await EthermintStargateClient.EthSigningStargateClient.connectWithSigner(
       network.rpc as string,
       wallet
     );

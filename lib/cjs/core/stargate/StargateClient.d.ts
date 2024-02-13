@@ -1,4 +1,4 @@
-import { Account, StargateClient as CosmjsStargateClient } from "@cosmjs/stargate";
-export declare class StargateClient extends CosmjsStargateClient {
+import { Account, StargateClient } from "@cosmjs/stargate";
+export declare class EthStargateClient extends StargateClient {
     getAccount(searchAddress: string): Promise<Account | null>;
 }
