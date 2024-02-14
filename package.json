@@ -18,8 +18,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@cosmjs/launchpad": "^0.27.1",
     "@injectivelabs/sdk-ts": "^1.14.5",
+    "@cosmjs/launchpad": "^0.27.1",
     "bech32-2": "npm:bech32@^2.0.0"
   },
   "devDependencies": {
