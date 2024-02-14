@@ -1,0 +1,119 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Address = void 0;
+const bech32_1 = require("bech32");
+const ethereumjs_util_1 = require("ethereumjs-util");
+const exceptions_1 = require("@injectivelabs/exceptions");
+const utils_1 = require("dym-ts-sdk/lib/esm/utils");
+const dym_ts_sdk_1 = require("dym-ts-sdk");
+/**
+ * @category Utility Classes
+ */
+class Address {
+    constructor(bech32Address) {
+        this.bech32Address = bech32Address;
+    }
+    compare(address) {
+        return this.bech32Address === address.bech32Address;
+    }
+    get address() {
+        return this.bech32Address;
+    }
+    /**
+     * Create an address instance from a bech32-encoded address and a prefix
+     * @param {string} prefix
+     * @return {Address}
+     * @throws {Error} if bech is not a valid bech32-encoded address
+     */
+    static fromBech32(bech, prefix = dym_ts_sdk_1.AddressPrefix) {
+        try {
+            const address = Buffer.from(bech32_1.bech32.fromWords(bech32_1.bech32.decode(bech).words)).toString("hex");
+            const addressInHex = address.startsWith("0x") ? address : `0x${address}`;
+            const addressBuffer = ethereumjs_util_1.Address.fromString(addressInHex.toString()).toBuffer();
+            const bech32Address = bech32_1.bech32.encode(prefix, bech32_1.bech32.toWords(addressBuffer));
+            return new Address(bech32Address);
+        }
+        catch (e) {
+            throw new exceptions_1.GeneralException(new Error(e.message), {
+                type: exceptions_1.ErrorType.ValidationError,
+            });
+        }
+    }
+    /**
+     * Create an address instance from an ethereum address
+     * @param {string} hex Ethereum address
+     * @param {string} prefix
+     * @return {Address}
+     * @throws {Error} if bech is not a valid bech32-encoded address
+     */
+    static fromHex(hex, prefix = dym_ts_sdk_1.AddressPrefix) {
+        const addressHex = hex.startsWith("0x") ? hex : `0x${hex}`;
+        const addressBuffer = ethereumjs_util_1.Address.fromString(addressHex.toString()).toBuffer();
+        const bech32Address = bech32_1.bech32.encode(prefix, bech32_1.bech32.toWords(addressBuffer));
+        return new Address(bech32Address);
+    }
+    /**
+     * Convert an address instance to a bech32-encoded account address
+     * @param {string} prefix
+     * @returns {string}
+     */
+    toBech32(prefix = dym_ts_sdk_1.AddressPrefix) {
+        const address = this.toHex();
+        const addressHex = address.startsWith("0x") ? address : `0x${address}`;
+        const addressBuffer = ethereumjs_util_1.Address.fromString(addressHex).toBuffer();
+        return bech32_1.bech32.encode(prefix, bech32_1.bech32.toWords(addressBuffer));
+    }
+    /**
+     * Return a bech32-encoded account address
+     * @return {string}
+     * @throws {Error} if this address is not a valid account address
+     * */
+    toAccountAddress() {
+        return this.toBech32(dym_ts_sdk_1.AddressPrefix);
+    }
+    /**
+     * Return a bech32-encoded validator address
+     * @return {string}
+     * @throws {Error} if this address is not a valid validator address
+     * */
+    toValidatorAddress() {
+        return this.toBech32(utils_1.BECH32_ADDR_VAL_PREFIX);
+    }
+    /**
+     * Return a bech32-encoded consensus address
+     * @return {string}
+     * @throws {Error} if this address is not a valid consensus address
+     * */
+    toConsensusAddress() {
+        return this.toBech32(utils_1.BECH32_ADDR_CONS_PREFIX);
+    }
+    /**
+     * Return a hex representation of address
+     * @return {string}
+     * @throws {Error} if this address is not a valid account address
+     * */
+    toHex() {
+        const { bech32Address } = this;
+        const address = Buffer.from(bech32_1.bech32.fromWords(bech32_1.bech32.decode(bech32Address).words)).toString("hex");
+        return address.startsWith("0x") ? address : `0x${address}`;
+    }
+    /**
+     * Return a subaccount address from the given bech32 encoded address
+     * @param {number} index the subaccount index
+     * @return {string}
+     * @throws {Error} if this address is not a valid account address
+     * */
+    getSubaccountId(index = 0) {
+        const suffix = "0".repeat(23) + index; /* TODO for double digit numbers */
+        return `${this.toHex()}${suffix}`;
+    }
+    /**
+     * Return a ethereum address from the given bech32 encoded address
+     * @return {string}
+     * @throws {Error} if this address is not a valid account address
+     * */
+    getEthereumAddress() {
+        return this.toHex();
+    }
+}
+exports.Address = Address;
