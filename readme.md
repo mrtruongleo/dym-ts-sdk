@@ -43,7 +43,7 @@ import { StdFee, calculateFee, GasPrice } from "@cosmjs/stargate";
 
   //define transaction detail
   const recipient = "target_address";//replace here
-  const realAmount = 0.001; //inj in real amount
+  const realAmount = 0.001; //dym in real amount
   const amount = {
     denom: "adym",
     amount: new BigNumberInBase(realAmount).toWei().toFixed(), //you can just use amount string like: "1000000000000000"
