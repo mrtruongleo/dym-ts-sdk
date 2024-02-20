@@ -29,7 +29,7 @@ import { StdFee, calculateFee, GasPrice } from "@cosmjs/stargate";
 //2.Main scripts
 (async () => {
   //define chain's details.
-  cconst network = {
+  const network = {
     rest: "https://dymension-api.lavenderfive.com:443",
     chainId: "dymension_1100-1",
     rpc: "https://rpc.dymension.nodestake.org",
