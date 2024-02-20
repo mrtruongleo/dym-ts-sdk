@@ -10,14 +10,14 @@ export const accountParser = (ethAccount: any): Account => {
     accountNumber: any = 0,
     sequence: any = 0;
   if (ethAccount.typeUrl === "/cosmos.auth.v1beta1.BaseAccount") {
-    console.log("cosmos base");
+    //console.log("cosmos base");
     account = BaseAccount.decode(ethAccount.value);
     address = account.address;
     pubkey = account.pubKey;
     sequence = parseInt(account.sequence);
     accountNumber = parseInt(account.accountNumber);
   } else {
-    console.log("eth base");
+    //console.log("eth base");
     account = InjectiveTypesV1Beta1Account.EthAccount.decode(ethAccount.value);
     const baseAccount = account.baseAccount;
     address = baseAccount.address;
@@ -26,7 +26,7 @@ export const accountParser = (ethAccount: any): Account => {
     accountNumber = parseInt(baseAccount.accountNumber);
   }
 
-  console.log("decode account: ", account);
+  //console.log("decode account: ", account);
   return {
     address: address,
     pubkey: pubkey
