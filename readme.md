@@ -1,7 +1,7 @@
 # dym-ts-sdk
 
 Dymenstion TypeScript SDK working with @cosmjs/stargate.
-There are some bugss when using the native library of @injectivelabs/sdk-ts together with @cosmjs/stargate, so I will separate the sdk-ts part and make some adjustments to make it compatible and consistent with @cosmjs/stargate.
+There are no official sdk from dev, so I will create the dym-sdk-ts part base on @injectivelabs/sdk-ts and make some adjustments to make it compatible and consistent with @cosmjs/stargate.
 
 # Contributions and Bug Fixes:
 
@@ -14,6 +14,43 @@ Begin your hobby project by installing the SDK via npm:
 `npm install @mrtruongleo/dym-ts-sdk`
 
 Explore the SDK’s modules and start experimenting with blockchain features in your projects.
+
+# First, you need to know how dymension address and private key was created. This is how I create.
+
+You need to install ethers, @cosmjs/encoding. Add this to package.json
+
+```javascript
+"dependencies": {
+    ...
+    "@cosmjs/encoding": "^0.32.4",
+    "ethers": "^5.7.2"
+}
+```
+
+# Create or import Dymension wallet from Mnemonic phrase
+
+```javascript
+import { toBech32 } from "@cosmjs/encoding";
+import { ethers } from "ethers";
+import { HDNode } from "ethers/lib/utils";
+import { Address as A } from "ethereumjs-util";
+(async () => {
+  let mnemonic: string | undefined = undefined; //Or replace with your mnemonic phrase
+  if (!mnemonic) {
+    const privateSeed = ethers.utils.randomBytes(16); //12 words
+    mnemonic = ethers.utils.entropyToMnemonic(privateSeed);
+  }
+  const newWallet: HDNode = ethers.utils.HDNode.fromMnemonic(mnemonic);
+  const hdnode = newWallet.derivePath("m/44'/60'/0'/0/0");
+  const evmAddress = hdnode.address;
+  const privateKey = hdnode.privateKey;
+  const dymAddress = toBech32("dym", A.fromString(evmAddress).toBuffer());
+
+  console.log("Dym address: ", dymAddress);
+  console.log("Mnemonic: ", mnemonic);
+  console.log("Private key: ", privateKey);
+})();
+```
 
 # Example send dym transaction:
 
